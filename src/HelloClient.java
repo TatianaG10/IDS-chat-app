@@ -1,26 +1,28 @@
+import java.rmi.*;
 import java.rmi.registry.*;
 
 public class HelloClient {
-  public static void main(String [] args) {
-	
-	try {
-	  if (args.length < 2) {
-	   System.out.println("Usage: java HelloClient <rmiregistry host> <rmiregistry port>");
-	   return;}
 
-	String host = args[0];
-	int port = Integer.parseInt(args[1]);
+    public static void main(String[] args) {
+        try {
+            if (args.length < 1) {
+                System.out.println("Usage: java HelloClient <rmiregistry host>");
+                return;
+            }
 
-	Registry registry = LocateRegistry.getRegistry(host, port); 
-	Hello h = (Hello) registry.lookup("HelloService");
+            String host = args[0];
 
-	// Remote method invocation
-	String res = h.sayHello();
-	System.out.println(res);
+            // Get remote object reference
+            Registry registry = LocateRegistry.getRegistry(host);
+            Hello h = (Hello) registry.lookup("HelloService");
 
-	} catch (Exception e)  {
-//		System.err.println("Error on client: " + e);
-		e.printStackTrace();
-	}
-  }
+            // Remote method invocation
+            String res = h.sayHello();
+            System.out.println(res);
+
+        } catch (Exception e) {
+            System.err.println("Error on client: " + e);
+            e.printStackTrace();
+        }
+    }
 }
