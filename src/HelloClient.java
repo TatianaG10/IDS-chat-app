@@ -16,10 +16,9 @@ public class HelloClient {
             Registry registry = LocateRegistry.getRegistry(host);
             Hello h = (Hello) registry.lookup("HelloService");
 
-            // Remote method invocation
-            String res = h.sayHello();
-            System.out.println(res);
-
+			// Remote method invocation
+			String res = h.sayHello("Andy");
+			System.out.println(res);
         } catch (Exception e) {
             System.err.println("Error on client: " + e);
             e.printStackTrace();
