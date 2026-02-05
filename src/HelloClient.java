@@ -13,8 +13,8 @@ public class HelloClient {
             String host = args[0];
 
 			// Export this info interface to the registry
-			Info info = new Info("Andy");
-			Info_itf h_stub = (Info_itf) UnicastRemoteObject.exportObject(info, 0);
+			Accounting info = new Accounting();
+			Accounting_itf h_stub = (Accounting_itf) UnicastRemoteObject.exportObject(info, 0);
 
             // Get remote object reference
             Registry registry = LocateRegistry.getRegistry(host);
