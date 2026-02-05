@@ -7,7 +7,7 @@ public class HelloServer {
     public static void main(String[] args) {
         try {
             // Create a Hello remote object
-            HelloImpl h = new HelloImpl("Hello world!");
+            HelloImpl h = new HelloImpl();
             Hello h_stub = (Hello) UnicastRemoteObject.exportObject(h, 0);
 
             // Get (or start) the RMI registry on default port 1099
