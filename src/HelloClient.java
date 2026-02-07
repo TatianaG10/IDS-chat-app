@@ -19,9 +19,11 @@ public class HelloClient {
             // Get remote object reference
             Registry registry = LocateRegistry.getRegistry(host);
             Hello h = (Hello) registry.lookup("HelloService");
-            Hello2 h2 = (Hello2) registry.lookup("RegistryService");
+            Hello2 h2 = (Hello2) registry.lookup("Hello2Service");
+            Registry_itf r = (Registry_itf) registry.lookup("RegistryService");
 
 			// Remote method invocation
+            r.register(acc_stub);
 			String res = h2.sayHello(acc_stub);
 			System.out.println(res);
 

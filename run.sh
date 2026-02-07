@@ -57,7 +57,7 @@ cd ../
 
 javac -d classes -cp .:classes:lib/Hello.jar:lib/HelloImpl.jar:lib/Hello2.jar:lib/HelloImpl2.jar:lib/RegistryImpl.jar:lib/Registry_itf.jar:lib/Accounting_itf.jar src/HelloServer.java
 
-javac -d classes -cp .:classes:lib/Hello.jar:lib/Hello2.jar:lib/Accounting.jar:lib/Accounting_itf.jar src/HelloClient.java
+javac -d classes -cp .:classes:lib/Hello.jar:lib/Hello2.jar:lib/Accounting.jar:lib/Accounting_itf.jar:lib/Registry_itf src/HelloClient.java
 
 # cd ../
 # Lauching rmi, sever and client 
