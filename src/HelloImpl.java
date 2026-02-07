@@ -6,7 +6,7 @@ public class HelloImpl implements Hello {
         super();
     }
 
-	public String sayHello(Info_itf client) throws RemoteException {
-		return "Hello " + client.getName() + "!";
+	public String sayHello() throws RemoteException {
+		return "Hello !";
 	}
 }

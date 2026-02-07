@@ -13,16 +13,28 @@ public class HelloClient {
             String host = args[0];
 
 			// Export this info interface to the registry
-			Accounting info = new Accounting();
-			Accounting_itf h_stub = (Accounting_itf) UnicastRemoteObject.exportObject(info, 0);
+			Accounting acc = new Accounting();
+			Accounting_itf acc_stub = (Accounting_itf) UnicastRemoteObject.exportObject(acc, 0);
 
             // Get remote object reference
             Registry registry = LocateRegistry.getRegistry(host);
             Hello h = (Hello) registry.lookup("HelloService");
+            Hello2 h2 = (Hello2) registry.lookup("RegistryService");
 
 			// Remote method invocation
-			String res = h.sayHello(h_stub);
+			String res = h2.sayHello(acc_stub);
 			System.out.println(res);
+
+            // Test limit hello
+            for (int i = 0; i < 10; i++)
+            {
+                res = h2.sayHello(acc_stub);
+                System.out.println(res);
+            }
+            
+            // Test the original service
+            res = h.sayHello();
+            System.out.println(res);
         } catch (Exception e) {
             System.err.println("Error on client: " + e);
             e.printStackTrace();
