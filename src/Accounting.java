@@ -8,14 +8,17 @@ public class Accounting implements Accounting_itf {
         num_calls = 0;
     }
 
-    // not sure if this function is useful
-    public void AccountingCall(){
-        num_calls++;
+    public int getNumCalls() throws RemoteException
+    {
+        return num_calls;
     }
 
     public void numberOfCalls(int n) throws RemoteException 
     {
         num_calls = n;
-        System.out.println("Server notification: you reached " + n + " calls.");
+        if ((num_calls % 10) == 0)
+        {
+            System.out.println("Server notification: you reached " + n + " calls.");
+        }
     }
 }
