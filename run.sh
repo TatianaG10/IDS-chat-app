@@ -1,6 +1,6 @@
 MY_VAR="/home/tatiana/School/M1-mosig/IDS/IDS-chat-app"
 
-export CLASSPATH=$MY_VAR/lib/Hello.jar:$MY_VAR/lib/Info_itf.jar
+export CLASSPATH=$MY_VAR/lib/Hello.jar:$MY_VAR/lib/Hello2.jar:$MY_VAR/lib/Accouting_itf.jar:$MY_VAR/lib/Registry_itf.jar
 
 # Compiling 
 javac -d classes -classpath .:classes src/Accouting_itf.java
@@ -21,6 +21,16 @@ cd ../
 javac -d classes -classpath .:classes src/Registry.java
 cd classes
 jar cvf ../lib/Registry.jar Registry.class
+cd ../
+
+javac -d classes -classpath .:classes src/Hello2.java
+cd classes
+jar cvf ../lib/Hello2.jar Hello2.class
+cd ../
+
+javac -d classes -classpath .:classes src/HelloImpl2.java
+cd classes
+jar cvf ../lib/HelloImpl2.jar HelloImpl2
 cd ../
 
 javac -d classes -classpath .:classes src/Info_itf.java
