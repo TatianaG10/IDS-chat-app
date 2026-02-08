@@ -1,0 +1,5 @@
+import java.rmi.*;
+
+public interface Chat_itf extends Remote {
+    public void sendMessage(ChatMessage message) throws RemoteException;
+}
