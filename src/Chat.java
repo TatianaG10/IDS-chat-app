@@ -27,7 +27,5 @@ public class Chat implements Chat_itf {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 }
