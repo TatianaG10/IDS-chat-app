@@ -24,7 +24,9 @@ public class ChatClient {
 
             for (;;)
             {
-                // TODO: main loop of sending messages
+                // TODO: main loop for the client
+                // Get the client list from reistry to ask with who the client want to connect, 
+                // and then a second infinite loop to send the messages and receive messages
             }
 
         } catch (Exception e) {
