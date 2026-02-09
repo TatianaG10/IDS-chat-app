@@ -2,31 +2,52 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class ChatClientList implements ChatClientList_itf {
+    private ArrayList<ClientInfo_itf> clientList;
 
-    @Override
+    public ChatClientList()
+    {
+        clientList = new ArrayList<ClientInfo_itf>();
+    }
+
     public void connect(ClientInfo_itf client) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'connect'");
+        if (clientList.contains(client))
+        {
+            System.out.println("Error: the client is already connected");
+        }
+        else
+        {
+            clientList.add(client);
+        }
     }
 
     @Override
     public void disconnect(ClientInfo_itf client) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'disconnect'");
+        if (!clientList.contains(client))
+        {
+            System.out.println("Error: the client is not connected");
+        }
+        else
+        {
+            clientList.remove(client);
+        }
     }
 
     @Override
     public boolean isConnected(String clientName) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isConnectec'");
+        boolean res = false;
+        for (ClientInfo_itf client : clientList)
+        {
+            if (clientName.equals(client.getName()))
+            {
+                res = true;
+                break;
+            }
+        }
+        return res;
     }
 
     @Override
     public ArrayList<ClientInfo_itf> getClientList() throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getClientList'");
+        return clientList;
     }
-
-
-    
 }
