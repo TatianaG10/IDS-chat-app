@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public interface ChatClientList_itf extends Remote {
     public void connect(ClientInfo_itf client) throws RemoteException;
-    public boolean isConnected(ClientInfo_itf client) throws RemoteException;
+    public void disconnect(ClientInfo_itf client) throws RemoteException;
+    public boolean isConnected(String clientName) throws RemoteException;
     public ArrayList<ClientInfo_itf> getClientList() throws RemoteException;
 }

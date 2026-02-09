@@ -3,7 +3,6 @@ import java.io.InputStreamReader;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 public class ChatClient {
         public static void main(String[] args) {
@@ -27,13 +26,32 @@ public class ChatClient {
             try (
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
             ){
+                // Main loop to send message son the global forum
                 for (;;)
                 {
-                   // Client main loop: ask users if he/she
-                   // want to message until he/she enters Ctrl+D
+                    ChatMessage lastMessage = chat.getLastMessage();
+                    if (lastMessage == null)
+                    {
+                        System.out.println("New chat");    
+                    }
+                    else
+                    {
+                        System.out.println("From " + lastMessage.getExpediter());
+                        System.out.println(lastMessage.getContent());
+                    }
+
+                    String userInput;
+                    System.out.println("Send a message");
+                    if ((userInput = stdIn.readLine()) == null)
+                        break;
+                    ChatMessage message = new ChatMessage(userInput, info.getName());
+                    chat.sendMessage(message);
                 }
+
+                chat.disconnectFromChat(info_stub);
             } catch (Exception e) {
                 System.err.println("Error on client: " + e);
+                e.printStackTrace();
             }
 
         } catch (Exception e) {

@@ -1,14 +1,16 @@
-public class ChatMessage {
-    private String message;
-    private ClientInfo_itf from;
+import java.io.Serializable;
 
-    public ChatMessage(String content, ClientInfo_itf sender)
+public class ChatMessage implements Serializable{
+    private String message;
+    private String from;
+
+    public ChatMessage(String content, String sender)
     {
         message = content;
         from = sender;
     }
 
-    public ClientInfo_itf getExpediter()
+    public String getExpediter()
     {
         return from;
     }
@@ -16,5 +18,10 @@ public class ChatMessage {
     public String getContent()
     {
         return message;
+    }
+
+    public String toString()
+    {
+        return "ChatMessage[message=" + message + ",from=" + from + "]";
     }
 }

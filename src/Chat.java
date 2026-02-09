@@ -36,13 +36,33 @@ public class Chat implements Chat_itf {
 
         try {
             ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ClientRegistryService");
-            if (clientList.isConnected(client))
+            if (clientList.isConnected(client.getName()))
             {
                 System.out.println("Error: Can't connect an already connected client");
             }
             else
             {
                 clientList.connect(client);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: problem occured on the Chat: " + e);
+            e.printStackTrace();
+        }
+    }
+
+    public void disconnectFromChat(ClientInfo_itf client) throws RemoteException
+    {
+        Registry registry = LocateRegistry.getRegistry();
+
+        try {
+            ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ClientRegistryService");
+            if (!clientList.isConnected(client.getName()))
+            {
+                System.out.println("Error: Can't disconnect a non connected client");
+            }
+            else
+            {
+                clientList.disconnect(client);
             }
         } catch (Exception e) {
             System.out.println("Error: problem occured on the Chat: " + e);
