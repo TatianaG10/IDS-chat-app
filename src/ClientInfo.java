@@ -1,10 +1,9 @@
 import java.rmi.RemoteException;
 
 public class ClientInfo implements ClientInfo_itf {
+    private String name;
 
-    @Override
     public String getName() throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return name;
     }    
 }
