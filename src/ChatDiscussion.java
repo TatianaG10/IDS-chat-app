@@ -1,18 +1,13 @@
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 public class ChatDiscussion implements ChatDiscussion_itf {
+    public ChatMessage lastMessage;
 
-    @Override
-    public ArrayList<ChatMessage> getDiscussion(int machineA, int machineB) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDiscussion'");
+    public ChatMessage getLastMessage() throws RemoteException {
+        return lastMessage;
     }
 
-    @Override
-    public void updateDiscussion(ChatMessage message) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateDiscussion'");
-    }
-    
+    public void updateLastMessage(ChatMessage message) throws RemoteException {
+        lastMessage = message;
+    } 
 }

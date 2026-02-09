@@ -1,18 +1,18 @@
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class ClientRegistry implements ClientRegistry_itf {
+public class ChatClientList implements ChatClientList_itf {
 
     @Override
-    public void register(ClientInfo_itf client) throws RemoteException {
+    public void connect(ClientInfo_itf client) throws RemoteException {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'register'");
+        throw new UnsupportedOperationException("Unimplemented method 'connect'");
     }
 
     @Override
-    public boolean isregistered(ClientInfo_itf client) throws RemoteException {
+    public boolean isConnected(ClientInfo_itf client) throws RemoteException {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isregistered'");
+        throw new UnsupportedOperationException("Unimplemented method 'isConnectec'");
     }
 
     @Override
@@ -20,5 +20,6 @@ public class ClientRegistry implements ClientRegistry_itf {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getClientList'");
     }
+
     
 }

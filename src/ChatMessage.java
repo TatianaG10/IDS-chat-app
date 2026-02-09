@@ -1,23 +1,16 @@
 public class ChatMessage {
     private String message;
-    private int from;
-    private int to;
+    private ClientInfo_itf from;
 
-    public ChatMessage(String content, int machineFrom, int machineTo)
+    public ChatMessage(String content, ClientInfo_itf sender)
     {
         message = content;
-        from = machineFrom;
-        to = machineTo;
+        from = sender;
     }
 
-    public int getExpediter()
+    public ClientInfo_itf getExpediter()
     {
         return from;
-    }
-
-    public int getReceiver()
-    {
-        return to;
     }
 
     public String getContent()

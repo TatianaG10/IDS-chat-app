@@ -1,6 +1,9 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class ChatClient {
         public static void main(String[] args) {
@@ -18,15 +21,20 @@ public class ChatClient {
             // Get remote object reference
             Registry registry = LocateRegistry.getRegistry(host);
             Chat_itf chat = (Chat_itf) registry.lookup("ChatService");
-            ClientRegistry_itf reg = (ClientRegistry_itf) registry.lookup("ClientRegistryService");
+            ChatClientList_itf reg = (ChatClientList_itf) registry.lookup("ChatClientListService");
 
-            reg.register(info_stub);
-
-            for (;;)
-            {
-                // TODO: main loop for the client
-                // Get the client list from reistry to ask with who the client want to connect, 
-                // and then a second infinite loop to send the messages and receive messages
+            reg.connect(info_stub);
+            
+            try (
+                BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
+            ){
+                for (;;)
+                {
+                   // Client main loop: ask users if he/she
+                   // want to message until he/she enters Ctrl+D
+                }
+            } catch (Exception e) {
+                System.err.println("Error on client: " + e);
             }
 
         } catch (Exception e) {
