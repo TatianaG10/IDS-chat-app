@@ -21,9 +21,8 @@ public class ChatClient {
             // Get remote object reference
             Registry registry = LocateRegistry.getRegistry(host);
             Chat_itf chat = (Chat_itf) registry.lookup("ChatService");
-            ChatClientList_itf reg = (ChatClientList_itf) registry.lookup("ChatClientListService");
 
-            reg.connect(info_stub);
+            chat.connectToChat(info_stub);
             
             try (
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
