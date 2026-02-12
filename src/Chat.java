@@ -14,7 +14,7 @@ public class Chat implements Chat_itf {
         Registry registry = LocateRegistry.getRegistry();
 
         try {
-            ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ClientRegistryService");
+            ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (!clientList.isConnected(message.getExpediter()))
             {
                 System.out.println("Error: Can't send message, the client is not connected");
@@ -42,7 +42,7 @@ public class Chat implements Chat_itf {
         Registry registry = LocateRegistry.getRegistry();
 
         try {
-            ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ClientRegistryService");
+            ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (clientList.isConnected(client.getName()))
             {
                 System.out.println("Error: Can't connect an already connected client");
@@ -62,7 +62,7 @@ public class Chat implements Chat_itf {
         Registry registry = LocateRegistry.getRegistry();
 
         try {
-            ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ClientRegistryService");
+            ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (!clientList.isConnected(client.getName()))
             {
                 System.out.println("Error: Can't disconnect a non connected client");
