@@ -18,9 +18,9 @@ public class ChatServer {
             Registry registry = LocateRegistry.getRegistry();
 
             // Register the remote object
-            registry.bind("ChatService", chat_stub);
-            registry.bind("ChatDiscussionService", disc_stub);
-            registry.bind("ChatClientListService", list_stub);
+            registry.rebind("ChatService", chat_stub);
+            registry.rebind("ChatDiscussionService", disc_stub);
+            registry.rebind("ChatClientListService", list_stub);
             
             System.out.println("Server ready!");
 

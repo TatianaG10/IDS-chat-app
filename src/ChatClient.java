@@ -7,14 +7,15 @@ import java.rmi.server.UnicastRemoteObject;
 public class ChatClient {
         public static void main(String[] args) {
         try {
-            if (args.length < 1) {
-                System.out.println("Usage: java HelloClient <rmiregistry host>");
+            if (args.length < 2) {
+                System.out.println("Usage: java HelloClient <username> <rmiregistry host>");
                 return;
             }
-            String host = args[0];
+            String userName = args[0];
+            String host = args[1];
 
 			// Export information about the client
-			ClientInfo info = new ClientInfo("Andy");
+			ClientInfo info = new ClientInfo(userName);
 			ClientInfo_itf info_stub = (ClientInfo_itf) UnicastRemoteObject.exportObject(info, 0);
 
             // Get remote object reference
