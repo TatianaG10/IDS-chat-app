@@ -1,8 +1,8 @@
 MY_VAT_TAT="/home/tatiana/School/M1-mosig/IDS/IDS-chat-app"
 MY_VAR_AND="/home/andy/Documents/Workspace/Distributed_system/IDS-chat-app"
-MY_VAR=$MY_VAR_AND
+MY_VAR=$MY_VAT_TAT
 
-export CLASSPATH="$MY_VAR/lib/Hello.jar:$MY_VAR/lib/Hello2.jar:$MY_VAR/lib/Accounting_itf.jar:$MY_VAR/lib/Registry_itf.jar"
+export CLASSPATH="$MY_VAR/lib/Chat.jar:$MY_VAR/lib/Chat_itf.jar:$MY_VAR/lib/ChatDiscussion.jar:$MY_VAR/lib/ChatClientList.jar:$MY_VAR/lib/ChatClientList_itf.jar:$MY_VAR/lib/ClientInfo.jar:$MY_VAR/lib/ClientInfo_itf.jar:$MY_VAR/lib/ChatClientDisplay.jar:$MY_VAR/lib/ChatMessage.jar"
 
 # Compiling 
 
@@ -77,5 +77,5 @@ javac -d classes -cp .:classes:lib/ClientInfo.jar:lib/ClientInfo_itf.jar:lib/Cha
 
 # java -classpath .:classes:lib/Chat.jar:lib/Chat_itf.jar:lib/ChatDiscussion.jar:lib/ChatDiscussion_itf.jar:lib/ChatClientList.jar:lib/ChatClientList_itf.jar src/ChatServer.java ChatServer
 
-# java -classpath .:classes:lib/ClientInfo.jar:lib/ClientInfo_itf.jar:lib/Chat_itf.jar:lib/ChatClientDisplay.jar:lib/ChatMessage ChatClient localhost
+# java -classpath .:classes:lib/ClientInfo.jar:lib/ClientInfo_itf.jar:lib/Chat_itf.jar:lib/ChatClientDisplay.jar:lib/ChatMessage.jar ChatClient localhost
 
