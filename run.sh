@@ -1,8 +1,8 @@
 MY_VAT_TAT="/home/tatiana/School/M1-mosig/IDS/IDS-chat-app"
 MY_VAR_AND="/home/andy/Documents/Workspace/Distributed_system/IDS-chat-app"
-MY_VAR=$MY_VAT_TAT
+MY_VAR=$MY_VAR_AND
 
-export CLASSPATH="$MY_VAR/lib/Chat.jar:$MY_VAR/lib/Chat_itf.jar:$MY_VAR/lib/ChatDiscussion.jar:$MY_VAR/lib/ChatClientList.jar:$MY_VAR/lib/ChatClientList_itf.jar:$MY_VAR/lib/ClientInfo.jar:$MY_VAR/lib/ClientInfo_itf.jar:$MY_VAR/lib/ChatClientDisplay.jar:$MY_VAR/lib/ChatMessage.jar"
+export CLASSPATH="$MY_VAR/lib/Chat.jar:$MY_VAR/lib/Chat_itf.jar:$MY_VAR/lib/ChatDiscussion.jar:$MY_VAR/lib/ChatDiscussion_itf.jar:$MY_VAR/lib/ChatClientList.jar:$MY_VAR/lib/ChatClientList_itf.jar:$MY_VAR/lib/ClientInfo.jar:$MY_VAR/lib/ClientInfo_itf.jar:$MY_VAR/lib/ChatClientDisplay.jar:$MY_VAR/lib/ChatMessage.jar"
 
 # Compiling 
 
