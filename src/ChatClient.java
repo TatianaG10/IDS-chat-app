@@ -14,7 +14,7 @@ public class ChatClient {
             String host = args[0];
 
 			// Export information about the client
-			ClientInfo info = new ClientInfo();
+			ClientInfo info = new ClientInfo("Andy");
 			ClientInfo_itf info_stub = (ClientInfo_itf) UnicastRemoteObject.exportObject(info, 0);
 
             // Get remote object reference
