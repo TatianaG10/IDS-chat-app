@@ -22,5 +22,4 @@ public class ChatClientDisplay implements Runnable {
             }
         }
     }
-    
 }

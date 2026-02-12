@@ -24,7 +24,8 @@ public class ChatClient {
             chat.connectToChat(info_stub);
 
             // Start a thread to display stuff
-            new Thread(new ChatClientDisplay(info));
+            Thread tDisplay = new Thread(new ChatClientDisplay(info));
+            tDisplay.start();
 
             try (
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
@@ -45,6 +46,8 @@ public class ChatClient {
                 System.err.println("Error on client: " + e);
                 e.printStackTrace();
             }
+
+            tDisplay.interrupt();
 
         } catch (Exception e) {
             System.err.println("Error on client: " + e);
