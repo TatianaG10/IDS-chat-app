@@ -22,24 +22,16 @@ public class ChatClient {
             Chat_itf chat = (Chat_itf) registry.lookup("ChatService");
 
             chat.connectToChat(info_stub);
-            
+
+            // Start a thread to display stuff
+            new Thread(new ChatClientDisplay(info));
+
             try (
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
             ){
-                // Main loop to send message son the global forum
+                // Main loop to send message to the global forum
                 for (;;)
                 {
-                    ChatMessage lastMessage = chat.getLastMessage();
-                    if (lastMessage == null)
-                    {
-                        System.out.println("New chat");    
-                    }
-                    else
-                    {
-                        System.out.println("From " + lastMessage.getExpediter());
-                        System.out.println(lastMessage.getContent());
-                    }
-
                     String userInput;
                     System.out.println("Send a message");
                     if ((userInput = stdIn.readLine()) == null)

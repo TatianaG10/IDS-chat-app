@@ -23,6 +23,13 @@ public class Chat implements Chat_itf {
             {
                 ChatDiscussion_itf disc = (ChatDiscussion_itf) registry.lookup("ChatDiscussionService");
                 disc.updateLastMessage(message);
+                
+                // Update it for each client too
+                for (ClientInfo_itf client : clientList.getClientList())
+                {
+                    client.updateLastMessage(message);
+                    client.notifyMessageArrived();
+                }
             }
         } catch (Exception e) {
             System.out.println("Error: problem occured when trying to send a message: " + e);
