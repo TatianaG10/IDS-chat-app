@@ -43,7 +43,8 @@ public class ChatClient {
                 }
 
                 chat.disconnectFromChat(info_stub);
-            } catch (Exception e) {
+            } 
+            catch (Exception e) {
                 System.err.println("Error on client: " + e);
                 e.printStackTrace();
             }

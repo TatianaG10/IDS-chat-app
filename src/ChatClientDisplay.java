@@ -16,6 +16,11 @@ public class ChatClientDisplay implements Runnable {
                 System.out.println("Message From: " + clientInfo.getLastMessage().getExpediter());
                 System.out.println(clientInfo.getLastMessage().getContent());
             } 
+            catch (InterruptedException e)
+            {
+                System.out.println("Terminating display");
+                break;
+            }
             catch (Exception e) {
                 System.out.println("Error in ChatClientDisplay.run(): " + e);
                 e.printStackTrace();

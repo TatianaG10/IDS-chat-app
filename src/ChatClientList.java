@@ -28,7 +28,14 @@ public class ChatClientList implements ChatClientList_itf {
         }
         else
         {
-            clientList.remove(client);
+            if (clientList.remove(client))
+            {
+                System.out.println("Client " + client.getName() + " disconnected successfully!");
+            }
+            else
+            {
+                System.out.println("Not disconnected");
+            }
         }
     }
 
