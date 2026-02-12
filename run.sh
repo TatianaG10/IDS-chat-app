@@ -21,16 +21,6 @@ cd classes
 jar cvf ../lib/ClientInfo.jar ClientInfo.class
 cd ../
 
-javac -d classes -classpath .:classes src/Chat_itf.java
-cd classes
-jar cvf ../lib/Chat_itf.jar Chat_itf.class
-cd ../
-
-javac -d classes -classpath .:classes src/Chat.java
-cd classes
-jar cvf ../lib/Chat.jar Chat.class
-cd ../
-
 javac -d classes -classpath .:classes src/ChatClientList_itf.java
 cd classes
 jar cvf ../lib/ChatClientList_itf.jar ChatClientList_itf.class
@@ -51,19 +41,29 @@ cd classes
 jar cvf ../lib/ChatDiscussion.jar ChatDiscussion.class
 cd ../
 
+javac -d classes -classpath .:classes src/Chat_itf.java
+cd classes
+jar cvf ../lib/Chat_itf.jar Chat_itf.class
+cd ../
+
+javac -d classes -classpath .:classes src/Chat.java
+cd classes
+jar cvf ../lib/Chat.jar Chat.class
+cd ../
+
 javac -d classes -classpath .:classes src/ChatServer.java
 cd classes
 jar cvf ../lib/ChatServer.jar ChatServer.class
 cd ../
 
-javac -d classes -classpath .:classes src/ChatClient.java
-cd classes
-jar cvf ../lib/ChatClient.jar ChatClient.class
-cd ../
-
 javac -d classes -classpath .:classes src/ChatClientDisplay.java
 cd classes
 jar cvf ../lib/ChatClientDisplay.jar ChatClientDisplay.class
+cd ../
+
+javac -d classes -classpath .:classes src/ChatClient.java
+cd classes
+jar cvf ../lib/ChatClient.jar ChatClient.class
 cd ../
 
 javac -d classes -cp .:classes:lib/Chat.jar:lib/Chat_itf.jar:lib/ChatDiscussion.jar:lib/ChatDiscussion_itf.jar:lib/ChatClientList.jar:lib/ChatClientList_itf.jar src/ChatServer.java
