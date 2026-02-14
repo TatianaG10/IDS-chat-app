@@ -35,7 +35,6 @@ public class ChatClient {
                 for (;;)
                 {
                     String userInput;
-                    System.out.println("Send a message");
                     if ((userInput = stdIn.readLine()) == null)
                         break;
                     ChatMessage message = new ChatMessage(userInput, info.getName());
