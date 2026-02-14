@@ -1,15 +1,16 @@
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
 public class ClientInfo implements ClientInfo_itf {
     private String name;
-    private ChatMessage lastMessage;
+    private ArrayList<ChatMessage> listMessages;
     private Semaphore messageUpdated;
 
     public ClientInfo(String machineName)
     {
         name = machineName;
-        lastMessage = null;
+        listMessages = new ArrayList<ChatMessage>();
         messageUpdated = new Semaphore(1);
     }
 
@@ -17,9 +18,9 @@ public class ClientInfo implements ClientInfo_itf {
         return name;
     }
 
-    public ChatMessage getLastMessage()
+    public ArrayList<ChatMessage> getListMessages()
     {
-        return lastMessage;
+        return listMessages;
     }
 
     public Semaphore getSemMessageUpdated()
@@ -27,11 +28,11 @@ public class ClientInfo implements ClientInfo_itf {
         return messageUpdated;
     }
 
-    public void updateLastMessage(ChatMessage message) throws RemoteException {
-        lastMessage = message;
+    public void updateListMessages(ArrayList<ChatMessage> newListMessages) throws RemoteException {
+        listMessages = newListMessages;
     }
 
     public void notifyMessageArrived() throws RemoteException {
         messageUpdated.release();
-    }    
+    }
 }

@@ -16,6 +16,7 @@ public class ChatClientList implements ChatClientList_itf {
         }
         else
         {
+            // TODO: Need to synchronize this
             clientList.add(client);
         }
     }
@@ -28,6 +29,7 @@ public class ChatClientList implements ChatClientList_itf {
         }
         else
         {
+            // TODO: Need to synchronize this
             if (clientList.remove(client))
             {
                 System.out.println("Client " + client.getName() + " disconnected successfully!");

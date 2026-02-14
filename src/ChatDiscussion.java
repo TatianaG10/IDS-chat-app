@@ -1,13 +1,20 @@
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class ChatDiscussion implements ChatDiscussion_itf {
-    public ChatMessage lastMessage;
+    public ArrayList<ChatMessage> listMessages;
 
-    public ChatMessage getLastMessage() throws RemoteException {
-        return lastMessage;
+    public ChatDiscussion()
+    {
+        listMessages = new ArrayList<ChatMessage>();
+    }
+    
+    public ArrayList<ChatMessage> getListMessages() throws RemoteException {
+        return listMessages;
     }
 
-    public void updateLastMessage(ChatMessage message) throws RemoteException {
-        lastMessage = message;
-    } 
+    public void addNewMessage(ChatMessage message) throws RemoteException {
+        // TODO: Protect this critical section
+        listMessages.add(message);
+    }
 }

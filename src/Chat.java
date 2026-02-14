@@ -1,6 +1,7 @@
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 
 public class Chat implements Chat_itf {
 
@@ -22,12 +23,12 @@ public class Chat implements Chat_itf {
             else
             {
                 ChatDiscussion_itf disc = (ChatDiscussion_itf) registry.lookup("ChatDiscussionService");
-                disc.updateLastMessage(message);
+                disc.addNewMessage(message);
                 
                 // Update it for each client too
                 for (ClientInfo_itf client : clientList.getClientList())
                 {
-                    client.updateLastMessage(message);
+                    client.updateListMessages(getListMessages());
                     client.notifyMessageArrived();
                 }
             }
@@ -50,7 +51,7 @@ public class Chat implements Chat_itf {
             else
             {
                 clientList.connect(client);
-                client.updateLastMessage(getLastMessage());
+                client.updateListMessages(getListMessages());
                 client.notifyMessageArrived();
             }
         } catch (Exception e) {
@@ -79,14 +80,14 @@ public class Chat implements Chat_itf {
         }
     }
 
-    public ChatMessage getLastMessage() throws RemoteException
+    public ArrayList<ChatMessage> getListMessages() throws RemoteException
     {
         Registry registry = LocateRegistry.getRegistry();
-        ChatMessage res = null;
+        ArrayList<ChatMessage> res = null;
 
         try {
             ChatDiscussion_itf disc = (ChatDiscussion_itf) registry.lookup("ChatDiscussionService");
-            res = disc.getLastMessage();
+            res = disc.getListMessages();
         } catch (Exception e) {
             System.out.println("Error: problem occured on the Chat: " + e);
             e.printStackTrace();

@@ -14,14 +14,17 @@ public class ChatClientDisplay implements Runnable {
             {
                 clientInfo.getSemMessageUpdated().acquire();
                 System.out.print("\033\143");
-                if (clientInfo.getLastMessage() == null)
+                if (clientInfo.getListMessages().size() == 0)
                 {
                     System.out.println("\nNo messages!\n");
                 }
                 else
                 {
-                    System.out.println("\nMessage From: " + clientInfo.getLastMessage().getExpediter());
-                    System.out.println(clientInfo.getLastMessage().getContent() + "\n");
+                    for (ChatMessage message: clientInfo.getListMessages())
+                    {
+                        System.out.println("\nMessage From: " + message.getExpediter());
+                        System.out.println(message.getContent() + "\n");
+                    }
                 }
             } 
             catch (InterruptedException e)
