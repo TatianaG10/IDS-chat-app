@@ -50,6 +50,8 @@ public class Chat implements Chat_itf {
             else
             {
                 clientList.connect(client);
+                client.updateLastMessage(getLastMessage());
+                client.notifyMessageArrived();
             }
         } catch (Exception e) {
             System.out.println("Error: problem occured on the Chat: " + e);
