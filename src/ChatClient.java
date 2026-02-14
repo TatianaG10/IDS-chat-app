@@ -48,9 +48,7 @@ public class ChatClient {
                 System.err.println("Error on client: " + e);
                 e.printStackTrace();
             }
-
             tDisplay.interrupt();
-
         } catch (Exception e) {
             System.err.println("Error on client: " + e);
             e.printStackTrace();

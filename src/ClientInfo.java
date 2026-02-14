@@ -10,7 +10,7 @@ public class ClientInfo implements ClientInfo_itf {
     {
         name = machineName;
         lastMessage = null;
-        messageUpdated = new Semaphore(0);
+        messageUpdated = new Semaphore(1);
     }
 
     public String getName() throws RemoteException {

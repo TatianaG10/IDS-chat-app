@@ -13,12 +13,20 @@ public class ChatClientDisplay implements Runnable {
             try 
             {
                 clientInfo.getSemMessageUpdated().acquire();
-                System.out.println("Message From: " + clientInfo.getLastMessage().getExpediter());
-                System.out.println(clientInfo.getLastMessage().getContent());
+                System.out.print("\033\143");
+                if (clientInfo.getLastMessage() == null)
+                {
+                    System.out.println("\nNo messages!\n");
+                }
+                else
+                {
+                    System.out.println("\nMessage From: " + clientInfo.getLastMessage().getExpediter());
+                    System.out.println(clientInfo.getLastMessage().getContent() + "\n");
+                }
             } 
             catch (InterruptedException e)
             {
-                System.out.println("Terminating display");
+                System.out.println("Ending display...");
                 break;
             }
             catch (Exception e) {
