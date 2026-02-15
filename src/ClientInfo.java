@@ -5,13 +5,13 @@ import java.util.concurrent.Semaphore;
 public class ClientInfo implements ClientInfo_itf {
     private String name;
     private ArrayList<ChatMessage> listMessages;
-    private Semaphore messageUpdated;
+    private Semaphore messagesUpdated;
 
     public ClientInfo(String machineName)
     {
         name = machineName;
         listMessages = new ArrayList<ChatMessage>();
-        messageUpdated = new Semaphore(1);
+        messagesUpdated = new Semaphore(1);
     }
 
     public String getName() throws RemoteException {
@@ -25,7 +25,7 @@ public class ClientInfo implements ClientInfo_itf {
 
     public Semaphore getSemMessageUpdated()
     {
-        return messageUpdated;
+        return messagesUpdated;
     }
 
     public void updateListMessages(ArrayList<ChatMessage> newListMessages) throws RemoteException {
@@ -33,6 +33,6 @@ public class ClientInfo implements ClientInfo_itf {
     }
 
     public void notifyMessageArrived() throws RemoteException {
-        messageUpdated.release();
+        messagesUpdated.release();
     }
 }

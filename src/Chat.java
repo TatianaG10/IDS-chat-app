@@ -14,7 +14,8 @@ public class Chat implements Chat_itf {
     {
         Registry registry = LocateRegistry.getRegistry();
 
-        try {
+        try 
+        {
             ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (!clientList.isConnected(message.getExpediter()))
             {
@@ -32,17 +33,21 @@ public class Chat implements Chat_itf {
                     client.notifyMessageArrived();
                 }
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.out.println("Error: problem occured when trying to send a message: " + e);
             e.printStackTrace();
         }
     }
 
-    public void connectToChat(ClientInfo_itf client) throws RemoteException
+    public boolean connectToChat(ClientInfo_itf client) throws RemoteException
     {
+        boolean res = false;
         Registry registry = LocateRegistry.getRegistry();
 
-        try {
+        try 
+        {
             ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (clientList.isConnected(client.getName()))
             {
@@ -53,18 +58,24 @@ public class Chat implements Chat_itf {
                 clientList.connect(client);
                 client.updateListMessages(getListMessages());
                 client.notifyMessageArrived();
+                res = true;
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.out.println("Error: problem occured on the Chat: " + e);
             e.printStackTrace();
         }
+
+        return res;
     }
 
     public void disconnectFromChat(ClientInfo_itf client) throws RemoteException
     {
         Registry registry = LocateRegistry.getRegistry();
 
-        try {
+        try 
+        {
             ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (!clientList.isConnected(client.getName()))
             {
@@ -74,7 +85,9 @@ public class Chat implements Chat_itf {
             {
                 clientList.disconnect(client);
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.out.println("Error: problem occured on the Chat: " + e);
             e.printStackTrace();
         }
@@ -88,7 +101,8 @@ public class Chat implements Chat_itf {
         try {
             ChatDiscussion_itf disc = (ChatDiscussion_itf) registry.lookup("ChatDiscussionService");
             res = disc.getListMessages();
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             System.out.println("Error: problem occured on the Chat: " + e);
             e.printStackTrace();
         }

@@ -1,12 +1,15 @@
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 public class ChatDiscussion implements ChatDiscussion_itf {
     public ArrayList<ChatMessage> listMessages;
+    private Semaphore listMessagesSem;
 
     public ChatDiscussion()
     {
         listMessages = new ArrayList<ChatMessage>();
+        listMessagesSem = new Semaphore(1);
     }
     
     public ArrayList<ChatMessage> getListMessages() throws RemoteException {
@@ -14,7 +17,17 @@ public class ChatDiscussion implements ChatDiscussion_itf {
     }
 
     public void addNewMessage(ChatMessage message) throws RemoteException {
-        // TODO: Protect this critical section
-        listMessages.add(message);
+        try 
+        {
+            listMessagesSem.acquire();
+            listMessages.add(message);
+            listMessagesSem.release();
+            
+        } 
+        catch (Exception e) 
+        {
+            System.out.println("Error in ChatDiscussion: " + e);
+            e.printStackTrace();
+        }
     }
 }
