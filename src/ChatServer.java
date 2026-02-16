@@ -9,7 +9,7 @@ public class ChatServer {
             // Create a remote objects
             Chat chat = new Chat();
             Chat_itf chat_stub = (Chat_itf) UnicastRemoteObject.exportObject(chat, 0);
-            ChatDiscussion disc = new ChatDiscussion();
+            ChatDiscussion disc = new ChatDiscussion("messageLog.msg");
             ChatDiscussion_itf disc_stub = (ChatDiscussion_itf) UnicastRemoteObject.exportObject(disc, 0);
             ChatClientList list = new ChatClientList();
             ChatClientList_itf list_stub = (ChatClientList_itf) UnicastRemoteObject.exportObject(list, 0);
@@ -23,7 +23,6 @@ public class ChatServer {
             registry.rebind("ChatClientListService", list_stub);
             
             System.out.println("Server ready!");
-
         } catch (Exception e) {
             System.err.println("Error on server: " + e);
             e.printStackTrace();

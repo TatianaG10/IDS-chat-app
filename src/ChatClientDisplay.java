@@ -1,9 +1,13 @@
-public class ChatClientDisplay implements Runnable {
-    ClientInfo clientInfo;
+import java.util.ArrayList;
 
-    public ChatClientDisplay(ClientInfo client)
+public class ChatClientDisplay implements Runnable {
+    private ClientInfo clientInfo;
+    private int maxNumMessage;
+
+    public ChatClientDisplay(ClientInfo client, int numMessagesToPrint)
     {
         clientInfo = client;
+        maxNumMessage = numMessagesToPrint;
     }
 
     @Override
@@ -14,14 +18,18 @@ public class ChatClientDisplay implements Runnable {
             {
                 clientInfo.getSemMessageUpdated().acquire();
                 System.out.print("\033\143");
-                if (clientInfo.getLastMessage() == null)
+                if (clientInfo.getListMessages().size() == 0)
                 {
-                    System.out.println("\nNo messages!\n");
+                    System.out.println("No messages!\n");
                 }
                 else
                 {
-                    System.out.println("\nMessage From: " + clientInfo.getLastMessage().getExpediter());
-                    System.out.println(clientInfo.getLastMessage().getContent() + "\n");
+                    ArrayList<ChatMessage> listMessages = clientInfo.getListMessages();
+                    for (ChatMessage message: listMessages.subList(Math.max(listMessages.size() - maxNumMessage, 0), listMessages.size()))
+                    {
+                        System.out.println("Message From: " + message.getExpediter());
+                        System.out.println(message.getContent() + "\n");
+                    }
                 }
             } 
             catch (InterruptedException e)

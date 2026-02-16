@@ -1,6 +1,7 @@
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 
 public class Chat implements Chat_itf {
 
@@ -13,7 +14,8 @@ public class Chat implements Chat_itf {
     {
         Registry registry = LocateRegistry.getRegistry();
 
-        try {
+        try 
+        {
             ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (!clientList.isConnected(message.getExpediter()))
             {
@@ -22,26 +24,30 @@ public class Chat implements Chat_itf {
             else
             {
                 ChatDiscussion_itf disc = (ChatDiscussion_itf) registry.lookup("ChatDiscussionService");
-                disc.updateLastMessage(message);
+                disc.addNewMessage(message);
                 
                 // Update it for each client too
                 for (ClientInfo_itf client : clientList.getClientList())
                 {
-                    client.updateLastMessage(message);
+                    client.updateListMessages(getListMessages());
                     client.notifyMessageArrived();
                 }
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.out.println("Error: problem occured when trying to send a message: " + e);
             e.printStackTrace();
         }
     }
 
-    public void connectToChat(ClientInfo_itf client) throws RemoteException
+    public boolean connectToChat(ClientInfo_itf client) throws RemoteException
     {
+        boolean res = false;
         Registry registry = LocateRegistry.getRegistry();
 
-        try {
+        try 
+        {
             ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (clientList.isConnected(client.getName()))
             {
@@ -50,20 +56,26 @@ public class Chat implements Chat_itf {
             else
             {
                 clientList.connect(client);
-                client.updateLastMessage(getLastMessage());
+                client.updateListMessages(getListMessages());
                 client.notifyMessageArrived();
+                res = true;
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.out.println("Error: problem occured on the Chat: " + e);
             e.printStackTrace();
         }
+
+        return res;
     }
 
     public void disconnectFromChat(ClientInfo_itf client) throws RemoteException
     {
         Registry registry = LocateRegistry.getRegistry();
 
-        try {
+        try 
+        {
             ChatClientList_itf clientList = (ChatClientList_itf) registry.lookup("ChatClientListService");
             if (!clientList.isConnected(client.getName()))
             {
@@ -73,21 +85,24 @@ public class Chat implements Chat_itf {
             {
                 clientList.disconnect(client);
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) 
+        {
             System.out.println("Error: problem occured on the Chat: " + e);
             e.printStackTrace();
         }
     }
 
-    public ChatMessage getLastMessage() throws RemoteException
+    public ArrayList<ChatMessage> getListMessages() throws RemoteException
     {
         Registry registry = LocateRegistry.getRegistry();
-        ChatMessage res = null;
+        ArrayList<ChatMessage> res = null;
 
         try {
             ChatDiscussion_itf disc = (ChatDiscussion_itf) registry.lookup("ChatDiscussionService");
-            res = disc.getLastMessage();
-        } catch (Exception e) {
+            res = disc.getListMessages();
+        } 
+        catch (Exception e) {
             System.out.println("Error: problem occured on the Chat: " + e);
             e.printStackTrace();
         }

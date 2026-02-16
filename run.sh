@@ -77,5 +77,5 @@ javac -d classes -cp .:classes:lib/ClientInfo.jar:lib/ClientInfo_itf.jar:lib/Cha
 
 # java -classpath .:classes:lib/Chat.jar:lib/Chat_itf.jar:lib/ChatDiscussion.jar:lib/ChatDiscussion_itf.jar:lib/ChatClientList.jar:lib/ChatClientList_itf.jar ChatServer
 
-# java -classpath .:classes:lib/ClientInfo.jar:lib/ClientInfo_itf.jar:lib/Chat_itf.jar:lib/ChatClientDisplay.jar:lib/ChatMessage.jar ChatClient localhost
+# java -classpath .:classes:lib/ClientInfo.jar:lib/ClientInfo_itf.jar:lib/Chat_itf.jar:lib/ChatClientDisplay.jar:lib/ChatMessage.jar ChatClient Andy localhost
 

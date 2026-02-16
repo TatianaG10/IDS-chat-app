@@ -22,10 +22,14 @@ public class ChatClient {
             Registry registry = LocateRegistry.getRegistry(host);
             Chat_itf chat = (Chat_itf) registry.lookup("ChatService");
 
-            chat.connectToChat(info_stub);
+            if(!chat.connectToChat(info_stub))
+            {
+                System.out.println("Connection failed, ending client...");
+                return;
+            }
 
             // Start a thread to display stuff
-            Thread tDisplay = new Thread(new ChatClientDisplay(info));
+            Thread tDisplay = new Thread(new ChatClientDisplay(info, 14));
             tDisplay.start();
 
             try (
